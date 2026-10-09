@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main | My Website</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      background:
+        radial-gradient(ellipse at top, #253b61 0%, transparent 60%),
+        linear-gradient(135deg, #0b1120, #172033);
+    }
+
+    header {
+      width: 100%;
+      max-width: 1050px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .brand span { color: #60a5fa; }
+
+    .logout {
+      border: 1px solid #64748b;
+      background: rgba(255,255,255,.07);
+      color: white;
+      padding: 10px 17px;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    .logout:hover { background: #334155; }
+
+    .content {
+      width: 100%;
+      max-width: 1050px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(26px, 4vw, 38px);
+      margin: 0 0 10px;
+    }
+
+    .description {
+      color: #aebed3;
+      margin-bottom: 28px;
+    }
+
+    .video-frame {
+      width: 100%;
+      padding: 10px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(148,163,184,.3);
+      border-radius: 18px;
+      box-shadow: 0 25px 70px rgba(0,0,0,.4);
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      max-height: 70vh;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      background: #000;
+      border-radius: 11px;
+    }
+
+    .note {
+      margin-top: 18px;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 16px; }
+      header { margin-bottom: 20px; }
+      .brand { font-size: 18px; }
+      .video-frame { padding: 5px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">MY <span>WEBSITE</span></div>
+    <button class="logout" id="logoutButton">Logout ↗</button>
+  </header>
+
+  <main class="content">
+    <h1>Welcome to Main Page</h1>
+    <p class="description">Your video is ready to play.</p>
+
+    <div class="video-frame">
+      <video autoplay muted loop playsinline controls preload="auto">
+        <source src="video.mp4" type="video/mp4">
+        เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+      </video>
+    </div>
+
+    <p class="note">Enjoy your video · MY WEBSITE</p>
+  </main>
+
+  <script>
+    // ตรวจสอบสถานะสำหรับการสาธิตเท่านั้น
+    if (sessionStorage.getItem("demoLoggedIn") !== "true") {
+      window.location.replace("login.html");
+    }
+
+    document.getElementById("logoutButton").addEventListener("click", () => {
+      sessionStorage.removeItem("demoLoggedIn");
+      window.location.replace("login.html");
+    });
+  </script>
+</body>
+</html>
